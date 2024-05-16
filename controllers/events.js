@@ -18,8 +18,8 @@ const getAllEvents = async (req, res) => {
 };
 
 const getOneEvent = async (req, res) => {
-  const { _id } = req.params;
-  const result = await Event.findById(_id);
+  const { id } = req.params;
+  const result = await Event.findById(id);
 
   if (!result) {
     throw HttpError(404);
