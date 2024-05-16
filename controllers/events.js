@@ -25,7 +25,7 @@ const getOneEvent = async (req, res) => {
   return res.status(200).json(result);
 };
 
-const updateParticipant = async (req, res) => {
+const updateParticipants = async (req, res) => {
   const { id } = req.params;
   const result = await Event.findByIdAndUpdate(id, req.body);
 
@@ -39,5 +39,5 @@ const updateParticipant = async (req, res) => {
 export default {
   getAllEvents: ctrlWrapper(getAllEvents),
   getOneEvent: ctrlWrapper(getOneEvent),
-  updateParticipant: ctrlWrapper(updateParticipant),
+  updateParticipants: ctrlWrapper(updateParticipants),
 };

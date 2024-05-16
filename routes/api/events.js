@@ -2,19 +2,25 @@ import { Router } from 'express';
 
 import isValidId from '../../middlewares/isValidId.js';
 
-import tasksCtrl from '../../controllers/events.js';
+import eventsCtrl from '../../controllers/events.js';
 
 import validateBody from '../../middlewares/validateBody.js';
-import { createTaskSchema, updateTaskSchema, updateCompletedSchema } from '../../schemas/tasks.js';
+
+import { updateParticipantsSchema } from '../../schemas/events.js';
 
 const router = Router();
 
-const { getAllTasks, getOneTask, updateParticipant } = tasksCtrl;
+const { getAllEvents, getOneEvent, updateParticipants } = eventsCtrl;
 
-router.get('/', getAllTasks);
+router.get('/', getAllEvents);
 
-router.get('/:id', isValidId, getOneTask);
+router.get('/:id', isValidId, getOneEvent);
 
-router.patch('/:id/participant', isValidId, validateBody(updateCompletedSchema), updateParticipant);
+router.patch(
+  '/:id/participants',
+  isValidId,
+  validateBody(updateParticipantsSchema),
+  updateParticipants
+);
 
 export default router;
