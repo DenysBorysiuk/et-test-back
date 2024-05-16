@@ -18,8 +18,8 @@ const getAllEvents = async (req, res) => {
 };
 
 const getOneEvent = async (req, res) => {
-  const { id } = req.params;
-  const result = await Event.findById(id);
+  const { _id } = req.params;
+  const result = await Event.findById(_id);
 
   if (!result) {
     throw HttpError(404);
@@ -29,8 +29,12 @@ const getOneEvent = async (req, res) => {
 };
 
 const updateParticipants = async (req, res) => {
-  const { id } = req.params;
-  const result = await Event.findByIdAndUpdate(id, req.body);
+  const { _id } = req.params;
+  const result = await Event.findByIdAndUpdate(
+    _id,
+    { $push: { participants: req.body } },
+    { new: true }
+  );
 
   if (!result) {
     throw HttpError(404);
