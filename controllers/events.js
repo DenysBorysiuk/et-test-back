@@ -29,9 +29,9 @@ const getOneEvent = async (req, res) => {
 };
 
 const updateParticipants = async (req, res) => {
-  const { _id } = req.params;
+  const { id } = req.params;
   const result = await Event.findByIdAndUpdate(
-    _id,
+    id,
     { $push: { participants: req.body } },
     { new: true }
   );
