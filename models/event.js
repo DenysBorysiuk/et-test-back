@@ -18,14 +18,7 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
-    participants: [
-      {
-        fullName: { type: String, required: true },
-        email: { type: String, required: true },
-        dateOfBirth: { type: Date, required: true },
-        about: { type: String, required: true },
-      },
-    ],
+    participants: [],
   },
   { versionKey: false, timestamps: true }
 );
