@@ -8,10 +8,7 @@ const getAllEvents = async (req, res) => {
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
 
-  const result = await Event.find({
-    skip,
-    limit,
-  });
+  const result = await Event.find().skip(skip).limit(limit);
 
   if (!result) {
     throw HttpError(404);
