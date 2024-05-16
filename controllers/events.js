@@ -5,7 +5,13 @@ import HttpError from '../helpers/HttpError.js';
 import ctrlWrapper from '../helpers/ctrlWrapper.js';
 
 const getAllEvents = async (req, res) => {
-  const result = await Event.find();
+  const { page = 1, limit = 12 } = req.query;
+  const skip = (page - 1) * limit;
+
+  const result = await Event.find({
+    skip,
+    limit,
+  });
 
   if (!result) {
     throw HttpError(404);
